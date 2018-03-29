@@ -1,0 +1,72 @@
+<% @data = Datum.find_by(id: params[:id]) %>
+
+<div class="row">
+  <div class="col-sm-4">
+			<div class="page-header">
+				<h1> Capture data </h1>
+			</div>	
+
+
+		<%= form_for @data, url: "/projects/#{params["project_id"]}/data/#{params["id"]}", html: {method: "patch"}  do |f|%>		
+
+					<p>
+				     	<b>Is flexibility a benefit?</b>
+						    Yes <%= f.radio_button :field_1_on, 'Yes' %>
+						    Maybe <%= f.radio_button :field_1_on, 'Maybe' %> 
+						    No <%= f.radio_button :field_1_on, 'No' %> 
+						<br>
+				    	<b>Evidence: </b>
+				    		<%= f.text_area :field_1, class: "form-control"  %>
+				    </p>
+
+
+					<p>
+				     	<b>Do employers demand irregular hours ? Is flexability a burden?</b>
+						    Yes <%= f.radio_button :field_2_on, 'Yes' %>
+						    Maybe <%= f.radio_button :field_2_on, 'Maybe' %> 
+						    No <%= f.radio_button :field_2_on, 'No' %> 
+						<br>
+				    	<b>Evidence: </b>
+				    		<%= f.text_area :field_2, class: "form-control"  %>
+				    </p>
+
+				    <p>
+				     	<b> Can employees work from home? </b>
+						    Yes <%= f.radio_button :field_3_on, 'Yes' %>
+						    Maybe <%= f.radio_button :field_3_on, 'Maybe' %> 
+						    No <%= f.radio_button :field_3_on, 'No' %> 
+						<br>
+				    	<b>Evidence: </b>
+				    		<%= f.text_area :field_3, class: "form-control"  %>
+				    </p>
+
+
+				    <p>
+			 
+			    	<b>Paste the list of benefits here, if there is one: </b>
+			    		<%= f.text_area :field_4, class: "form-control tall_area" %>
+			    	</p>
+
+			    	<p>
+			    		
+			    		<%= label_tag "Do you have uncertainity about your classifications?" %>
+      					<%= check_box_tag "field_5", false %>
+
+			    	</p>
+
+		    
+		<%= submit_tag("Next") %> <!--<button >Skip</button>-->
+		<% end %>
+  </div>
+  
+  	
+  	<div class="col-sm-8 scroll">
+		<div class='text flow'> <!-- OWN DESIGNATION -->
+			<strong> Text: </strong><br>
+			<% if @data.present? %>
+				<%= @data["data"] %>
+			<% else %>
+				The text id is not present.
+			<% end %>
+		</div>
+	</div>

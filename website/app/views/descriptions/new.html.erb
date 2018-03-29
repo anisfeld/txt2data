@@ -1,0 +1,95 @@
+
+<style type="text/css">
+	.text {
+		background-color: white;	
+		width: 100%;
+		margin: 40px 20px;
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		overflow: scroll;
+        height: 600px;
+	}
+
+	.tall_area {
+		height: 5em;
+	}
+</style>
+
+
+<% txt = Txt.find_by(tid: params["tid"]) %>
+
+<% if txt.present? 
+	 tid = txt['tid'] 
+   else 
+	 tid = '' 
+   end 
+   puts tid 
+   %>
+	
+
+<div class="row">
+
+  <div class="col-sm-4">
+			<div class="page-header">
+				<h1> Capture data </h1>
+			</div>	
+
+
+			<%= form_for @description do |f| %>
+					
+					<p>
+				     	<b>Is flexibility a benefit?</b>
+						    Yes <%= f.radio_button :flex_good_tf, 'Yes' %>
+						    Maybe <%= f.radio_button :flex_good_tf, 'Maybe' %> 
+						    No <%= f.radio_button :flex_good_tf, 'No' %> 
+						<br>
+				    	<b>Evidence: </b>
+				    		<%= f.text_area :flex_good, class: "form-control"  %>
+				    </p>
+
+			    	<b>Do employers demand irregular hours ? Is flexability a burden?</b>
+					    Yes <%= f.radio_button :flex_bad_tf, 'Yes' %> 
+					    Maybe <%= f.radio_button :flex_bad_tf, 'Maybe' %>
+					    No 	<%= f.radio_button :flex_bad_tf, 'No' %> 
+					<br>
+			    	<b>Evidence: </b>
+			    		<%= f.text_area :flex_bad, class: "form-control"  %>
+			    	</p>
+
+			    	<b> Can employees work from home? </b>
+					    Yes <%= f.radio_button :work_from_home_tf, 'Yes' %> 
+					    Maybe <%= f.radio_button :work_from_home_tf, 'Maybe' %> 
+					    No <%= f.radio_button :work_from_home_tf, 'No' %> 
+					<br>
+			    	<b>Evidence: </b>
+			    		<%= f.text_area :work_from_home, class: "form-control" %>
+			    	</p>
+
+
+			    	<p>
+			 
+			    	<b>Paste the list of benefits here: </b>
+
+			    		<%= f.text_area :benefits_string, class: "form-control tall_area" %>
+			    	</p>
+			    	<%= f.hidden_field  :tid, value: tid %> 
+
+			<%= submit_tag("Next") %> <!--<button >Skip</button>-->
+			<% end %>
+		
+  </div>
+  
+  	
+  	<div class="col-sm-8 scroll">
+		<div class='text flow'> <!-- OWN DESIGNATION -->
+			<strong> Job listing: </strong><br>
+			<% if tid.present? %>
+				<%= txt["jobtext"] %>
+			<% else %>
+				The text id is not present.
+			<% end %>
+		</div>
+	</div>
+</div>
+

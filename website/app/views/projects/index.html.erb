@@ -1,0 +1,57 @@
+<div class="row">
+
+  <div>
+    <h1>  <% if session[:user_id] != nil %>
+              Start a new  <%= link_to "project", "/projects/new" %> 
+            <% else %>
+              <%= link_to "Log in", "/sessions/new" %> to start a project
+            <% end %>
+   or contribute to one below </h1>
+
+   <p> Before you can create a project you must create a Txt2Data account (sign up). </p>
+
+<p> Next navigate to the projects page. If you are logged in you will be greated with a link allowing you to start a project. A project keeps high-level information about your endeavor, including a name, a description and a logo. </p>
+
+<p> Next you can add data for analysis. Text data should be stored in a two column csv with the names id and text. </p>
+
+  </div>
+</div>
+<% if session[:user_id] != nil && Project.find_by(user_id: session[:user_id]) != nil %>
+  <div class="row">
+    <h2> My projects </h2>
+
+    <% Project.all.where(user_id: session[:user_id]).order('created_at desc').each do |project| %>
+
+      <div class="col-sm-3 my-3 text-center">
+        <% logo_url = (project.logo_url.present? ? project.logo_url : 'graphics/simon.png') %>
+        <%= link_to image_tag(logo_url, :class => "img-fluid"), "/projects/#{project.id}" %>
+        <p>
+          <%= project.title %>
+        </p> 
+
+        <p>
+          <%= link_to "[Delete]", "/projects/#{project.id}", method: "delete" %>
+          <%= link_to "[Edit]", "/projects/#{project.id}/edit" %>
+        </p>
+      </div>
+
+    <% end %>
+  </div>
+<% else %>
+<% end %>
+
+<div class="row">
+  <h2> Join a project </h2>
+  <% Project.all.order('created_at desc').each do |project| %>
+
+    <div class="col-sm-3 my-3 text-center">
+      <% logo_url = (project.logo_url.present? ? project.logo_url : 'graphics/simon.png') %>
+      <%= link_to image_tag(logo_url, :class => "img-fluid"), "/projects/#{project.id}" %>
+      <p>
+        <%= project.title %>
+      </p> 
+    </div>
+
+  <% end %>
+
+</div>

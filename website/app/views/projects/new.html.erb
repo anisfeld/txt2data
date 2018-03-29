@@ -1,0 +1,32 @@
+<h1>Begin a project</h1>
+
+<% if @project.errors.any? %>
+  <ul>
+    <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<div class="row">
+  <div class="col-sm-4">
+
+    <%= form_tag "/projects" do %>
+
+      <p>Title: <input value="<%= @project.title %>", name="title" type="text" autofocus class="form-control"></p>
+      <p>Description: <input value="<%= @project.description %>", name="description" type="textarea" class="form-control"></p>
+      <!--<p>Logo: <input value="<%= @project.logo_url %>" name="logo_url" type="text" class="form-control" placeholder="Add the url to a picture"></p>-->
+      <%= label_tag "Is the project open to the public?" %>
+      <%= check_box_tag "is_public", true, checked: true %>
+
+      <input name="owner_id" type="hidden" value=<%= session[:user_id] %> >
+      <button class="btn btn-primary">Save Project</button>
+      <!--<button class="btn btn-primary">Save and add data</button> -->
+    <% end %>
+
+  </div>
+</div>
+
+
+

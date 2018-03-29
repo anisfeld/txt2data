@@ -1,0 +1,27 @@
+<h1>Sign Up!</h1>
+
+<% if @user.errors.any? %>
+<ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<div class="row">
+  <div class="col-sm-4">
+
+    <%= form_tag "/users" do %>
+
+       <p>Email: <input value="<%= @user.email %>" name="email" type="text" autofocus class="form-control"></p>
+      <p>Password: <input value="<%= @user.password %>" name="password" type="text" autofocus class="form-control"></p>
+      <p>First Name: <input name="first_name" type="text" autofocus class="form-control">
+      	 Last Name: <input name="last_name" type="text" autofocus class="form-control">
+      </p>
+      <button class="btn btn-primary">Add New User</button>
+
+    <% end %>
+
+  </div>
+</div>

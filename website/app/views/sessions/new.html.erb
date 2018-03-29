@@ -1,0 +1,19 @@
+<h1>Login</h1>
+
+<div class="row">
+  <div class="col-sm-4">
+
+    <%= form_tag "/sessions" do %>
+
+      <p>Email: <input name="email" type="text" autofocus class="form-control"></p>
+      <p>Password: <input name="password" type="text" autofocus class="form-control"></p>
+
+      <button class="btn btn-primary">Let Me In!</button>
+
+    <% end %>
+
+  </div>
+	<div class="col-sm-4 col-sm-offset-2 .well">
+  		<%= render "example_logins" %>
+  	</div>
+</div>

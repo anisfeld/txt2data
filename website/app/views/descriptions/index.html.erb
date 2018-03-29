@@ -1,0 +1,41 @@
+<h1> Welcome screen </h1>
+<% tid = 1%>
+
+<div class="row">
+
+  <div class="my-3">
+    <%= link_to "Get a new text", "/descriptions/new/#{tid}", class: 'btn btn-primary' %>
+  </div>
+
+
+
+  <div class="my-3">
+    <%= link_to "Add a New description", "/descriptions/new", class: 'btn btn-primary' %>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Text_id</th>
+        <th>Flex_good</th>
+        <th>Flex_bad</th>
+        <th>Work_home</th>
+        <th>Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Description.all.each do |description| %>
+        <tr>
+          <td><%= link_to description.txt_id, "/descriptions/#{description.txt_id}" %></td>
+          <td><%=  description.flex_good  %></td>
+          <td><%=  description.flex_bad  %></td>
+          <td><%=  description.work_from_home  %></td>
+          <td><%=  description.benefits_string %></td>
+          <td><%= link_to "[Edit]", "/descriptions/#{description.txt_id}/edit" %></td>
+          <td><%= link_to "[Delete]", "/descriptions/#{description.txt_id}", method: 'delete' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

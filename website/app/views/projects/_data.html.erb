@@ -1,0 +1,41 @@
+<% this_id = @project.id %>
+
+<% if @project.data_id.present? %>
+	
+	<% data_id = @project.data_id %>
+	
+	<% if data_id > 0 %>
+	
+		<div class="my-3">
+			<%= link_to "Analyze a text", "/projects/#{this_id}/data/#{data_id}/edit", class: 'btn btn-primary' %>
+		</div>
+
+	<%= render "table", this_id: this_id %>
+	
+	<% else %>
+
+		<%= render "table", this_id: this_id  %>
+		<p> All the texts have been analyzed! To edit click on the id in the 'View/update' column. </p>
+
+	<% end %>
+
+<% else %>
+
+	<h1> Add Texts For Analysis </h1>
+	<p>
+	  The csv should have two colums: pid, text
+	</p>
+	<ul>
+	  <li>id is a unique identifier.</li>
+	  <li>text is the text to be processed.</li>
+	</ul>
+
+	<div>
+	  <%= form_tag "/projects/#{this_id}/data/import", multipart: true do %>
+	    <%= file_field_tag :file %>
+	    <%= submit_tag "Import CSV" %>
+	  <% end %>
+	</div>
+
+
+<% end %>
