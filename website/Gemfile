@@ -56,6 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'activerecord-import', github: "zdennis/activerecord-import" # https://github.com/zdennis/activerecord-import
 
-group :production do
-  gem 'pg', '0.20'
-end
+# group :production do
+#   gem 'pg', '0.20'
+# end
