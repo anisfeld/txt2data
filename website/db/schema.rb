@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "field_2"
     t.text "field_3"
     t.text "field_4"
-    t.text "field_5"
+    t.boolean "field_5", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "project_id"
     t.boolean "complete", default: false
-    t.integer "field_1_on"
-    t.integer "field_2_on"
-    t.integer "field_3_on"
+    t.text "field_1_on"
+    t.text "field_2_on"
+    t.text "field_3_on"
     t.index ["project_id"], name: "index_data_on_project_id"
   end
 

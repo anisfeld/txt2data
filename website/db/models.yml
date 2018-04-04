@@ -21,11 +21,11 @@ Datum
   field_2: text #flex_bad
   field_3: text #work_from_home
   field_4: text #benefits_string
-  field_5: text
-  field_1_on: integer
-  field_2_on: integer 
-  field_3_on: integer
-# FUTUREu 
+  field_5: boolean
+  field_1_on: text
+  field_2_on: text
+  field_3_on: text
+# FUTURE 
 Form
   field_1: text
   field_1_type: text

@@ -20,11 +20,15 @@ class DataController < ApplicationController
   	@data = Datum.find_by(id: params["id"])
 
 
-  	@data.field_1 = params["datum"]["field_1"]
+  @data.field_1 = params["datum"]["field_1"]
 	@data.field_2 = params["datum"]["field_2"]
 	@data.field_3 = params["datum"]["field_3"]
 	@data.field_4 = params["datum"]["field_4"]
-	@data.complete = true
+	@data.field_5 = params["datum"]["field_5"]
+  @data.field_1_on = params["datum"]["field_1_on"]
+  @data.field_2_on = params["datum"]["field_2_on"]
+  @data.field_3_on = params["datum"]["field_3_on"]
+  @data.complete = true
 	
 	if @data.save
 	  project = Project.find_by(id: params[:project_id])
