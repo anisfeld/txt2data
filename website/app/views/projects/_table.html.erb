@@ -7,6 +7,7 @@
         <th>Flex negative</th>
         <th>Work from home</th>
         <th>Benefits</th>
+        <th>Flagged?</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -20,7 +21,10 @@
           <td><%=  data.field_2  %></td>
           <td><%=  data.field_3  %></td>
           <td><%=  data.field_4  %></td>
-
+          <td> <% if data.field_5 %> 
+            <%= image_tag('graphics/3d_glasses.png', :size => "40x40", :class => "img-fluid") %>
+            <% end %>
+          </td>
           <td>
           <%= link_to "[Delete]", "/projects/#{this_id}/data/#{data.id}", method: 'delete' %></td>
         </tr>

@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   # delete "/projects/:id/data/:data_id" => 'data#destroy'
   # get "/projects/:id/data/:data_id/edit" => 'data#edit'
   # patch "/projects/:id/data/:data_id" => 'data#update'
-
+  get "/projects/:id/export.csv" => 'data#export'
 end

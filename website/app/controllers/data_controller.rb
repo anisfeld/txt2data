@@ -18,13 +18,13 @@ class DataController < ApplicationController
 
   def update
   	@data = Datum.find_by(id: params["id"])
-
-
+  puts("CHCECK IT OUT")
+  puts(params["field_5"])
   @data.field_1 = params["datum"]["field_1"]
 	@data.field_2 = params["datum"]["field_2"]
 	@data.field_3 = params["datum"]["field_3"]
 	@data.field_4 = params["datum"]["field_4"]
-	@data.field_5 = params["datum"]["field_5"]
+	@data.field_5 = params["field_5"]
   @data.field_1_on = params["datum"]["field_1_on"]
   @data.field_2_on = params["datum"]["field_2_on"]
   @data.field_3_on = params["datum"]["field_3_on"]
@@ -74,6 +74,14 @@ class DataController < ApplicationController
      end
     
   	 redirect_to "/projects/#{params[:id]}/", notice: notice
+  end
+
+  def export
+    @data = Datum.where(project_id: params[:id])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @data.to_csv }
+    end
   end
 end
 

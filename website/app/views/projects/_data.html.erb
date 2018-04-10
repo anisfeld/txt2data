@@ -8,8 +8,11 @@
 	
 		<div class="my-3">
 			<%= link_to "Analyze a text", "/projects/#{this_id}/data/#{data_id}/edit", class: 'btn btn-primary' %>
-		</div>
 
+
+			<%= link_to "Export all", "/projects/#{this_id}/export.csv", class: "btn btn-success" %>
+		</div>
+		
 	<%= render "table", this_id: this_id %>
 	
 	<% else %>
