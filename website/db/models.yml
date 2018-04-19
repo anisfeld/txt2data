@@ -15,7 +15,7 @@ User
 Datum
   project_id: integer
   complete: boolean
-  pid: integer
+  pid: bigint
   data: text 
   field_1: text #flex_good
   field_2: text #flex_bad
