@@ -4,23 +4,22 @@
 	
 	<% data_id = @project.data_id %>
 	
-	<% if data_id > 0 %>
+	
 	
 		<div class="my-3">
+			<% if data_id > 0 %>
 			<%= link_to "Analyze a text", "/projects/#{this_id}/data/#{data_id}/edit", class: 'btn btn-primary' %>
+			<% else %>
 
+			<p> All the texts have been analyzed! To edit click on the id in the 'View/update' column. </p>
 
+			<% end %>
 			<%= link_to "Export all", "/projects/#{this_id}/export.csv", class: "btn btn-success" %>
 		</div>
 		
 	<%= render "table", this_id: this_id %>
 	
-	<% else %>
-
-		<%= render "table", this_id: this_id  %>
-		<p> All the texts have been analyzed! To edit click on the id in the 'View/update' column. </p>
-
-	<% end %>
+		
 
 <% else %>
 
